@@ -6,38 +6,49 @@ using System.Collections.Generic;
 
 namespace BonusF.Models
 {
-
+    [Table("t_bonus")]
     public class BonusC {
 
+            [Column("id_bonus")]
+            [Key]
+            public int dni { get; set;}
 
-            public Int16 dni { get; set;}
-
+            [Column("name_bonus")]
             public String Name { get; set;}
 
+            [Column("lastname_bonus")]
             public String Lastname {get; set;}
 
+            [Column("district_bonus")]
             public String District {get; set;}
             
             [Display(Name="Banco")]
+            [Column("bank_bonus")] 
             public String Bank {get; set;}
 
-             public List<SelectListItem> Banks { get; } = new List<SelectListItem>
+            [NotMapped]
+            public List<SelectListItem> Banks { get; } = new List<SelectListItem>
             {
+
+            
             new SelectListItem { Value = "BN", Text = "Banco de la Nacion" },
             new SelectListItem { Value = "BCP", Text = "Banco de Credito del Peru" },
             new SelectListItem { Value = "BBVA", Text = "BBVA"  },
-            new SelectListItem { Value = "S", Text = "Scotiabank"  },
-            new SelectListItem { Value = "I", Text = "Interbank"  },
-            new SelectListItem { Value = "CS", Text = "CrediScotia"  },
-            new SelectListItem { Value = "FC", Text = "Financiera Confianza"  },
-            new SelectListItem { Value = "CRLA", Text = "Caja Rural Los Andes"  },
-            new SelectListItem { Value = "CDS", Text = "Caja de Santa"  },
-            new SelectListItem { Value = "CR", Text = "Caja Raiz"  },
+            new SelectListItem { Value = "Scotiabank", Text = "Scotiabank"  },
+            new SelectListItem { Value = "Interbank", Text = "Interbank"  },
+            new SelectListItem { Value = "CrediScotia", Text = "CrediScotia"  },
+            new SelectListItem { Value = "Financiera Confianza", Text = "Financiera Confianza"  },
+            new SelectListItem { Value = "Caja Rural Los Andes", Text = "Caja Rural Los Andes"  },
+            new SelectListItem { Value = "Caja de Santa", Text = "Caja de Santa"  },
+            new SelectListItem { Value = "Caja Raiz", Text = "Caja Raiz" },
+
+            
             };
 
+            [Column("age_bonus")] 
+            public int Age {get; set;}
 
-            public Int16 Age {get; set;}
-
+            [Column("gender_bonus")] 
             [Display(Name="Género")] 
             public String Gender {get; set;}
 

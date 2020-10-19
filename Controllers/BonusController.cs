@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BonusF.Models;
+using Bonus.Data;
 
 namespace Bonus.Controllers
 {
@@ -14,9 +15,14 @@ namespace Bonus.Controllers
 
             private readonly ILogger<BonusController> _logger;
 
-            public BonusController(ILogger<BonusController> logger)
+            private readonly DatabaseContext _context;
+
+            public BonusController(ILogger<BonusController> logger,
+             DatabaseContext context)
             {
                 _logger = logger;
+                _context = context;
+                
             }
 
             public IActionResult Index()
@@ -24,6 +30,7 @@ namespace Bonus.Controllers
                  var model = new BonusC();
                 model.Bank = " ";
                 return View(model);
+                
             }
 
             [HttpPost]
@@ -32,8 +39,10 @@ namespace Bonus.Controllers
 
                 if (ModelState.IsValid)
                 {
-
+                    _context.Add(objBonus);
+                    _context.SaveChanges();
                     objBonus.Response = "Gracias. Formulario enviado";
+                    
                 }
 
             return View("index", objBonus);
